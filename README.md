@@ -1,7 +1,7 @@
 # Blog
 This is a Blog Django Application Readme
 ## Steps for creating virtual environments for this project ##
-The following steps are required for creating virtual environment this project.
+The following steps are required for creating virtual environment of this project.
 
 **Make sure you create the virtual environment before installing requirements**
 1. pip install virtualenv
