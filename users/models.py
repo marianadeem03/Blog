@@ -37,14 +37,15 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    USER_TYPES = [
-        ("USER", "User"),
-        ("AUTHOR", "Author"),
-    ]
+    class UserTypes(models.IntegerChoices):
+        USER = 1, _("USER")
+        AUTHOR = 2, _("AUTHOR")
+
     username = models.CharField(max_length=50, null=True, blank=True, unique=False)
     email = models.EmailField(_('email address'), unique=True)
     password = models.CharField(max_length=50)
-    role_types = models.CharField(max_length=26, choices=USER_TYPES, default="User")
+    role_types = models.CharField(max_length=26, choices=UserTypes.choices, default="User")
+    role_types = models.PositiveSmallIntegerField(choices=UserTypes.choices, default=UserTypes.USER)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password']
 
@@ -52,3 +53,8 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    class Meta:
+        verbose_name = "user"
+        verbose_name_plural = "users"
+        get_latest_by = "order_date"
