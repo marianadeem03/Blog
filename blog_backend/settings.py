@@ -42,6 +42,7 @@ DJANGO_DEFAULT_APPS = [
 LOCAL_APPS = [
     'auths',
     'users',
+    'blog_app',
 ]
 
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + LOCAL_APPS
@@ -87,6 +88,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTH_USER_MODEL = "users.User"
 
 
 # Password validation
