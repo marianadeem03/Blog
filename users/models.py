@@ -44,7 +44,6 @@ class User(AbstractUser):
     username = models.CharField(max_length=50, null=True, blank=True, unique=False)
     email = models.EmailField(_('email address'), unique=True)
     password = models.CharField(max_length=50)
-    role_types = models.CharField(max_length=26, choices=UserTypes.choices, default="User")
     role_types = models.PositiveSmallIntegerField(choices=UserTypes.choices, default=UserTypes.USER)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password']
@@ -55,6 +54,6 @@ class User(AbstractUser):
         return self.email
 
     class Meta:
-        verbose_name = "user"
-        verbose_name_plural = "users"
-        get_latest_by = "order_date"
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+        get_latest_by = "role_types"

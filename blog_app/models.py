@@ -12,9 +12,9 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "category"
-        verbose_name_plural = "categories"
-        get_latest_by = "order_date"
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+        get_latest_by = "name"
 
 
 class Post(models.Model):
@@ -24,20 +24,20 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     post_image = models.ImageField(upload_to='images/', blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_category')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts_user')
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = "post"
-        verbose_name_plural = "posts"
-        get_latest_by = "order_date"
+        verbose_name = "Post"
+        verbose_name_plural = "Posts"
+        get_latest_by = "created_on"
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_comments')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -50,4 +50,4 @@ class Comment(models.Model):
     class Meta:
         verbose_name = "comment"
         verbose_name_plural = "comments"
-        get_latest_by = "order_date"
+        get_latest_by = "created_on"
