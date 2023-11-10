@@ -28,7 +28,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts_user')
 
     def __str__(self):
-        return self.title
+        return f"{self.title}, {self.category}"
 
     class Meta:
         verbose_name = "Post"
@@ -45,9 +45,9 @@ class Comment(models.Model):
     # it (when you remove a blog post for instance, you might want to delete comments as well).
 
     def __str__(self):
-        return self.comment
+        return f"{self.comment}, {self.post}"
 
     class Meta:
-        verbose_name = "comment"
-        verbose_name_plural = "comments"
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
         get_latest_by = "created_on"

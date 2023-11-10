@@ -44,6 +44,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=50, null=True, blank=True, unique=False)
     email = models.EmailField(_('email address'), unique=True)
     password = models.CharField(max_length=50)
+    # password2 = models.CharField(max_length=50)
     role_types = models.PositiveSmallIntegerField(choices=UserTypes.choices, default=UserTypes.USER)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password']
@@ -51,7 +52,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.email
+        return f"{self.email}, {self.get_role_types_display()}"
 
     class Meta:
         verbose_name = "User"
