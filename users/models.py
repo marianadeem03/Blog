@@ -41,7 +41,7 @@ class User(AbstractUser):
         USER = 1, _("USER")
         AUTHOR = 2, _("AUTHOR")
 
-    username = models.CharField(max_length=50, null=True, blank=True, unique=False)
+    username = models.CharField(max_length=255, null=True, blank=True, unique=False)
     email = models.EmailField(_('email address'), unique=True)
     password = models.CharField(max_length=50)
     # password2 = models.CharField(max_length=50)
