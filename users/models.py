@@ -43,7 +43,7 @@ class User(AbstractUser):
 
     username = models.CharField(max_length=255, null=True, blank=True, unique=False)
     email = models.EmailField(_('email address'), unique=True)
-    password = models.CharField(max_length=50)
+    # password = models.PasswordField()
     # password2 = models.CharField(max_length=50)
     role_types = models.PositiveSmallIntegerField(choices=UserTypes.choices, default=UserTypes.USER)
     USERNAME_FIELD = 'email'
